@@ -33,7 +33,7 @@ function App() {
     };
   }, [inbox]);
 
-  socket?.on("message", (message) => {
+  socket?.on("message", (message: string) => {
     setInbox([...inbox, message]);
   });
 
