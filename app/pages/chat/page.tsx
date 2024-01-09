@@ -1,19 +1,21 @@
 "use client";
 import { useState, useEffect } from "react";
-import { io } from "socket.io-client";
-
+import { io, Socket } from "socket.io-client";
+import { DefaultEventsMap } from "@socket.io/typed-events";
 function App() {
   console.log("component render");
   const room = 0;
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<string>("");
   const [inbox, setInbox] = useState(["salam", "necesen"]);
-  const [socket, setSocket] = useState(undefined);
+  const [socket, setSocket] = useState<
+    Socket<DefaultEventsMap, DefaultEventsMap> | undefined
+  >(undefined);
   // const [count, setCount] = useState(0);
   //   const socket = io("http://localhost:3008/");
   const sendMessage = () => {
     console.log(message);
 
-    socket.emit("message", message);
+    socket?.emit("message", message);
   };
 
   useEffect(() => {
