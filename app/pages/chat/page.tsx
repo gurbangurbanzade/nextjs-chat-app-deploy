@@ -1,22 +1,19 @@
 "use client";
 import { useState, useEffect } from "react";
 import { io, Socket } from "socket.io-client";
-import type { DefaultEventsMap } from "socket.io-client";
 
 function App() {
   console.log("component render");
   const room = 0;
   const [message, setMessage] = useState<string>("");
   const [inbox, setInbox] = useState(["salam", "necesen"]);
-  const [socket, setSocket] = useState<
-    Socket<DefaultEventsMap, DefaultEventsMap> | undefined
-  >(undefined);
+  const [socket, setSocket] = useState<any | undefined>(undefined);
   // const [count, setCount] = useState(0);
   //   const socket = io("http://localhost:3008/");
   const sendMessage = () => {
     console.log(message);
 
-    socket!.emit("message", message);
+    socket?.emit("message", message);
   };
 
   useEffect(() => {
@@ -34,7 +31,7 @@ function App() {
     };
   }, [inbox]);
 
-  socket!.on("message", (message: string) => {
+  socket?.on("message", (message: string) => {
     setInbox([...inbox, message]);
   });
 
