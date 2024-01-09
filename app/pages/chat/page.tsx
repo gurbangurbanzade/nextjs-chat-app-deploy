@@ -15,7 +15,7 @@ function App() {
   const sendMessage = () => {
     console.log(message);
 
-    socket?.emit("message", message);
+    socket!.emit("message", message);
   };
 
   useEffect(() => {
