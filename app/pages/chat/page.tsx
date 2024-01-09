@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { io, Socket } from "socket.io-client";
-import { DefaultEventsMap } from "@socket.io/typed-events";
+import type { DefaultEventsMap } from "socket.io-client";
+
 function App() {
   console.log("component render");
   const room = 0;
@@ -33,7 +34,7 @@ function App() {
     };
   }, [inbox]);
 
-  socket?.on("message", (message: string) => {
+  socket!.on("message", (message: string) => {
     setInbox([...inbox, message]);
   });
 
